@@ -1,6 +1,25 @@
-# Snapdrop 
+# Snapdrop that works inside the LAN
 
 [Snapdrop](https://snapdrop.net): local file sharing in your browser. Inspired by Apple's Airdrop.
+
+## THIS SETUP REQUIRES A STUN SERVER IN THE LAN
+
+A widely used STUN Server is coturn. 
+After the installation you need to remove the Google STUN Server at the end of /client/scripts/network.js and insert the appropriate informations about your STUN server. 
+
+If you used a password on your STUN Server you have to denote it like so: 
+
+```
+...
+RTCPeer.config = {
+    'iceServers': [{
+        urls: ['stun:10.0.0.2:3478'],
+	username: 'username',
+	credential : 'password'
+    }]
+}
+
+```
 
 #### Snapdrop is built with the following awesome technologies:
 * Vanilla HTML5 / ES6 / CSS3  
