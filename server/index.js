@@ -47,7 +47,7 @@ class SnapdropServer {
         }
 
         var senderIp = sender.ip;
-        if (/^((192\.168)|fe80)/.test(senderIp)) senderIp = "local";
+        if (/^((192\.168\.)|fe80|(10\.)|(172\.16\.))/.test(senderIp)) senderIp = "local";
 
         // relay message to recipient
         if (message.to && this._rooms[senderIp]) {
@@ -63,7 +63,7 @@ class SnapdropServer {
 
     _joinRoom(peer) {
 	var peerIp = peer.ip;
-	if (/^((192\.168)|fe80)/.test(peerIp)) peerIp = "local";
+	if (/^((192\.168\.)|fe80|(10\.)|(172\.16\.))/.test(peerIp)) peerIp = "local";
 	// if room doesn't exist, create it
         if (!this._rooms[peerIp]) {
             this._rooms[peerIp] = {};
@@ -96,7 +96,7 @@ class SnapdropServer {
 
     _leaveRoom(peer) {
         var peerIp = peer.ip;
-        if (/^((192\.168)|fe80)/.test(peerIp)) peerIp = "local";
+        if (/^((192\.168\.)|fe80|(10\.)|(172\.16\.))/.test(peerIp)) peerIp = "local";
         if (!this._rooms[peerIp] || !this._rooms[peerIp][peer.id]) return;
         this._cancelKeepAlive(this._rooms[peerIp][peer.id]);
 
